@@ -284,7 +284,7 @@ function UserDetailPage() {
               </Button>
             </TooltipTrigger>
             <TooltipContent side="bottom">
-              Generate a one-time code to connect the Open Wearables iOS app
+              Generate a one-time code to connect the Oriya iOS app
             </TooltipContent>
           </Tooltip>
           <input
@@ -376,7 +376,7 @@ function UserDetailPage() {
           <DialogHeader>
             <DialogTitle>Connect Mobile App</DialogTitle>
             <DialogDescription>
-              Enter these details in the Open Wearables iOS app to connect it to
+              Enter these details in the Oriya iOS app to connect it to
               this user's account. The invitation code is single-use and will
               expire.
             </DialogDescription>
