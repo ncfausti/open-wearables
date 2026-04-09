@@ -36,25 +36,6 @@ services:
         condition: service_healthy
       redis:
         condition: service_started
-    develop:
-      watch:
-        - action: sync
-          path: ./backend/app
-          target: /root_project/app
-        - action: sync+restart
-          path: ./backend/migrations
-          target: /root_project/migrations
-        - action: sync+restart
-          path: ./backend/config/.env
-          target: /root_project/config/.env
-        - action: sync
-          path: ./backend/scripts
-          target: /root_project/scripts
-        - action: sync
-          path: ./backend/tests
-          target: /root_project/tests
-        - action: rebuild
-          path: ./backend/uv.lock
     restart: on-failure
 
   celery-worker:
@@ -71,14 +52,6 @@ services:
       - redis
       - db
       - app
-    develop:
-      watch:
-        - action: sync+restart
-          path: ./backend/app
-          target: /root_project/app
-        - action: sync
-          path: ./backend/scripts
-          target: /root_project/scripts
 
   celery-beat:
     container_name: celery-beat__open-wearables
@@ -94,14 +67,6 @@ services:
       - redis
       - db
       - app
-    develop:
-      watch:
-        - action: sync+restart
-          path: ./backend/app
-          target: /root_project/app
-        - action: sync
-          path: ./backend/scripts
-          target: /root_project/scripts
 
   flower:
     container_name: flower__open-wearables
@@ -119,13 +84,6 @@ services:
       - redis
       - db
       - app
-    develop:
-      watch:
-        - action: sync
-          path: ./backend
-          target: /root_project
-          ignore:
-            - .venv/
 
   redis:
     container_name: redis__open-wearables
@@ -146,20 +104,6 @@ services:
       - "3000:3000"
     depends_on:
       - app
-    develop:
-      watch:
-        - action: sync
-          path: ./frontend/src
-          target: /app/src
-        - action: sync
-          path: ./frontend/public
-          target: /app/public
-        - action: rebuild
-          path: ./frontend/package.json
-        - action: rebuild
-          path: ./frontend/pnpm-lock.yaml
-        - action: rebuild
-          path: ./frontend/vite.config.ts
     restart: on-failure
 
 volumes:
