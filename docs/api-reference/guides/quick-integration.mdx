@@ -1,14 +1,14 @@
 ---
 title: 'Quick Integration'
-description: 'End-to-end guide to integrate Open Wearables with your application'
+description: 'End-to-end guide to integrate Oriya with your application'
 ---
 
 ## Overview
 
-This guide walks you through the complete flow of integrating Open Wearables with your application, from creating a user to fetching their health data.
+This guide walks you through the complete flow of integrating Oriya with your application, from creating a user to fetching their health data.
 
 ```
-1. Create a user in Open Wearables
+1. Create a user in Oriya
 2. Connect user to a wearable provider (Garmin, Polar, Suunto)
 3. Sync data from the provider
 4. Fetch timeseries, workouts, or sleep data
@@ -16,7 +16,7 @@ This guide walks you through the complete flow of integrating Open Wearables wit
 
 ## Step 1: Create a User
 
-First, create a user in Open Wearables to represent your application's user.
+First, create a user in Oriya to represent your application's user.
 
 ```bash
 curl -X POST "http://localhost:8000/api/v1/users" \
@@ -29,7 +29,7 @@ curl -X POST "http://localhost:8000/api/v1/users" \
 ```
 
 <Tip>
-  Use `external_user_id` to map Open Wearables users to your application's user IDs for easy lookup later.
+  Use `external_user_id` to map Oriya users to your application's user IDs for easy lookup later.
 </Tip>
 
 **Response:**
@@ -47,7 +47,7 @@ curl -X POST "http://localhost:8000/api/v1/users" \
 Save the `id` - you'll need it for all subsequent API calls.
 
 <Warning>
-  Open Wearables allows duplicate email addresses. If you need uniqueness, check for existing users first using `GET /api/v1/users?search=user@example.com` which returns a paginated list.
+  Oriya allows duplicate email addresses. If you need uniqueness, check for existing users first using `GET /api/v1/users?search=user@example.com` which returns a paginated list.
 </Warning>
 
 ## Step 2: Connect to a Provider

@@ -6,7 +6,7 @@ description: "Complete guide to integrating the native Android SDK with your Kot
 
 ## Overview
 
-This guide walks you through the complete integration of the Open Wearables Android SDK into a native Kotlin application, from backend setup to production deployment.
+This guide walks you through the complete integration of the Oriya Android SDK into a native Kotlin application, from backend setup to production deployment.
 
 <Steps>
   <Step title="Set up backend authentication endpoint" />
@@ -23,7 +23,7 @@ The SDK supports two authentication modes: **token-based** (recommended) and **A
 
 <Steps>
   <Step title="Your Backend generates token" icon="server">
-    Your backend calls the Open Wearables API with your **App credentials** (`app_id` + `app_secret`) to generate a user-scoped token (server-to-server, HTTPS) via [Create User Token](/api-reference/mobile-sdk/create-user-token) endpoint. Open Wearables returns `access_token` + `refresh_token`.
+    Your backend calls the Oriya API with your **App credentials** (`app_id` + `app_secret`) to generate a user-scoped token (server-to-server, HTTPS) via [Create User Token](/api-reference/mobile-sdk/create-user-token) endpoint. Oriya returns `access_token` + `refresh_token`.
   </Step>
   <Step title="Your Backend returns tokens to the app" icon="key">
     Your backend exposes its own custom endpoint that forwards the `access_token` and `refresh_token` to the mobile app. **Never expose `app_id` or `app_secret` to the client.**
@@ -32,14 +32,14 @@ The SDK supports two authentication modes: **token-based** (recommended) and **A
     The Android app receives the tokens and passes them to `sdk.signIn(accessToken, refreshToken)`.
   </Step>
   <Step title="SDK stores & syncs" icon="lock">
-    Android SDK stores credentials in EncryptedSharedPreferences and uses `accessToken` to sync health data directly to Open Wearables.
+    Android SDK stores credentials in EncryptedSharedPreferences and uses `accessToken` to sync health data directly to Oriya.
   </Step>
 </Steps>
 
 ```mermaid
 %%{init: {'flowchart': {'rankSpacing': 120, 'nodeSpacing': 40, 'padding': 20}}}%%
 graph TD
-    B["Your Backend"] -->|"&nbsp; POST /api/v1/users/{user_id}/token &nbsp;&nbsp; (app_id and app_secret) &nbsp;"| OW["Open Wearables API"]
+    B["Your Backend"] -->|"&nbsp; POST /api/v1/users/{user_id}/token &nbsp;&nbsp; (app_id and app_secret) &nbsp;"| OW["Oriya API"]
     OW -->|"&nbsp; access_token &nbsp;<br/>&nbsp; refresh_token &nbsp;"| B
     B -->|"&nbsp; Forward tokens &nbsp;"| App["Mobile SDK"]
     App -->|"&nbsp; Refresh token &nbsp;"| OW
@@ -52,14 +52,14 @@ graph TD
 
 ## Step 1: Backend Setup
 
-Your backend needs a single endpoint that generates access tokens for your users by calling the Open Wearables API and forwarding the tokens.
+Your backend needs a single endpoint that generates access tokens for your users by calling the Oriya API and forwarding the tokens.
 
 ### Generate Access Token
 
 When a user wants to connect their health data, your backend should:
 
 1. Authenticate the user (your own auth system)
-2. Call Open Wearables API at [`POST /api/v1/users/{user_id}/token`](/api-reference/mobile-sdk/create-user-token) with your App credentials
+2. Call Oriya API at [`POST /api/v1/users/{user_id}/token`](/api-reference/mobile-sdk/create-user-token) with your App credentials
 3. Return the `access_token` and `refresh_token` to the mobile app
 
 <Tabs>
@@ -73,7 +73,7 @@ app.post('/api/health/connect', authenticateUser, async (req, res) => {
   try {
     const owUserId = req.user.openWearablesUserId;
     
-    // Call Open Wearables API to generate a user-scoped token
+    // Call Oriya API to generate a user-scoped token
     const response = await fetch(
       `${process.env.OPENWEARABLES_HOST}/api/v1/users/${owUserId}/token`,
       {
@@ -119,7 +119,7 @@ app = FastAPI()
 async def connect_health(current_user = Depends(get_current_user)):
     ow_user_id = current_user.open_wearables_user_id
 
-    # Call Open Wearables API to generate a user-scoped token
+    # Call Oriya API to generate a user-scoped token
     async with httpx.AsyncClient() as client:
         response = await client.post(
             f"{os.environ['OPENWEARABLES_HOST']}/api/v1/users/{ow_user_id}/token",
@@ -152,7 +152,7 @@ class HealthController < ApplicationController
   def connect
     ow_user_id = current_user.open_wearables_user_id
 
-    # Call Open Wearables API to generate a user-scoped token
+    # Call Oriya API to generate a user-scoped token
     response = HTTParty.post(
       "#{ENV['OPENWEARABLES_HOST']}/api/v1/users/#{ow_user_id}/token",
       headers: { 'Content-Type' => 'application/json' },
@@ -179,7 +179,7 @@ end
 </Tabs>
 
 <Note>
-  The `user_id` in the URL is the Open Wearables User ID (UUID). You should store this mapping in your database when you first [Create User](/api-reference/users/create-user) via the Open Wearables API.
+  The `user_id` in the URL is the Oriya User ID (UUID). You should store this mapping in your database when you first [Create User](/api-reference/users/create-user) via the Oriya API.
 </Note>
 
 ## Step 2: SDK Initialization & Configuration
@@ -220,14 +220,14 @@ class MyApplication : Application() {
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `host` | `String` | **Required.** The Open Wearables API base URL (host only, without path suffix) |
+| `host` | `String` | **Required.** The Oriya API base URL (host only, without path suffix) |
 
 <Info>
   Provide only the base host URL, e.g. `https://your-domain.com`. Do **not** append `/api/v1/` or any other path — the SDK adds the required path prefix automatically.
 </Info>
 
 ```kotlin
-// For self-hosted Open Wearables
+// For self-hosted Oriya
 sdk.configure(host = "https://your-domain.com")
 ```
 
@@ -251,7 +251,7 @@ if (sdk.isSessionValid()) {
 After getting credentials from your backend, sign in with the SDK.
 
 <Info>
-  The `userId` parameter is the **Open Wearables User ID** (UUID) — the `id` returned by the [Create User](/api-reference/users/create-user) endpoint. Do **not** pass your own `external_user_id` here.
+  The `userId` parameter is the **Oriya User ID** (UUID) — the `id` returned by the [Create User](/api-reference/users/create-user) endpoint. Do **not** pass your own `external_user_id` here.
 </Info>
 
 ### Token-Based Authentication (Recommended)
@@ -639,7 +639,7 @@ The payload includes a `provider` field (`"samsung"` or `"google"`) and the SDK 
 }
 ```
 
-Data is automatically normalized to the Open Wearables unified data model and can be accessed through the standard API endpoints.
+Data is automatically normalized to the Oriya unified data model and can be accessed through the standard API endpoints.
 
 ## Next Steps
 

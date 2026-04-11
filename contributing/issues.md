@@ -1,6 +1,6 @@
 # Reporting Issues
 
-This guide covers how to report bugs and request features for Open Wearables.
+This guide covers how to report bugs and request features for Oriya.
 
 ## Before Creating an Issue
 

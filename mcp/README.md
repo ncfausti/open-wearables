@@ -1,6 +1,6 @@
-# Open Wearables MCP Server
+# Oriya MCP Server
 
-MCP (Model Context Protocol) server for Open Wearables, enabling AI assistants like Claude Desktop and Cursor to query wearable health data through natural language.
+MCP (Model Context Protocol) server for Oriya, enabling AI assistants like Claude Desktop and Cursor to query wearable health data through natural language.
 
 ## Features
 
@@ -12,8 +12,8 @@ MCP (Model Context Protocol) server for Open Wearables, enabling AI assistants l
 ## Prerequisites
 
 - [uv](https://docs.astral.sh/uv/) **>=0.9.17** package manager — upgrade with `uv self update` if needed ([docs](https://docs.astral.sh/uv/getting-started/installation/#upgrading-uv))
-- Running Open Wearables backend (or access to a deployed instance)
-- Valid Open Wearables API key
+- Running Oriya backend (or access to a deployed instance)
+- Valid Oriya API key
 
 ## Quick Start
 
@@ -238,7 +238,7 @@ uv run pre-commit run --all-files
 ### "Invalid API key" error
 
 Ensure your `OPEN_WEARABLES_API_KEY` in `config/.env` is valid. You can get an API key from:
-1. The Open Wearables developer portal
+1. The Oriya developer portal
 2. Or via the backend admin panel at `/api/v1/developer/api-keys`
 
 ### "Connection refused" error

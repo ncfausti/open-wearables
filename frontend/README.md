@@ -1,6 +1,6 @@
-# Open Wearables Platform - Frontend
+# Oriya - Frontend
 
-Modern web application built with TanStack Start for the Open Wearables Platform - a unified API for health data aggregation and automation.
+Modern web application built with TanStack Start for Oriya - a unified API for health data aggregation and automation.
 
 ## Tech Stack
 

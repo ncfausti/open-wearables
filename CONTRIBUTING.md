@@ -1,6 +1,6 @@
-# Contributing to Open Wearables
+# Contributing to Oriya
 
-Thank you for your interest in contributing to Open Wearables! This project aims to provide a unified API for health and wearable data aggregation.
+Thank you for your interest in contributing to Oriya! This project aims to provide a unified API for health and wearable data aggregation.
 
 Before jumping into a PR:
 - Check [Discord](https://discord.gg/qrcfFnNE6H) to confirm no one else is working on the same feature and to validate your approach aligns with the project roadmap

@@ -1,6 +1,6 @@
 # Setting Up Your Development Environment
 
-This guide covers setting up your local development environment for Open Wearables.
+This guide covers setting up your local development environment for Oriya.
 
 ## Prerequisites
 

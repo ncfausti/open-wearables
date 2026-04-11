@@ -1,7 +1,7 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Open Wearables",
+  "name": "Oriya",
   "colors": {
     "primary": "#16A34A",
     "light": "#07C983",
@@ -39,7 +39,7 @@
             ]
           },
           {
-            "group": "Open Wearables Mobile App",
+            "group": "Oriya Mobile App",
             "pages": [
               "app/introduction"
             ]

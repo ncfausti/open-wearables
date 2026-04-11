@@ -1,6 +1,6 @@
-# Open Wearables
+# Oriya
 
-Open Wearables is a health/wearable data aggregation platform with a Python/FastAPI backend and React/TypeScript frontend.
+Oriya is a health/wearable data aggregation platform with a Python/FastAPI backend and React/TypeScript frontend.
 
 ## Documentation Structure
 

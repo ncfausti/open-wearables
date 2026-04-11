@@ -1,6 +1,6 @@
 # Pull Request Guidelines
 
-This guide covers how to submit pull requests to Open Wearables.
+This guide covers how to submit pull requests to Oriya.
 
 ## Before You Start
 

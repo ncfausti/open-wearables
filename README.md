@@ -1,5 +1,5 @@
 
-# Open Wearables
+# Oriya
 
 <div align="left">
 
@@ -20,7 +20,7 @@ Open-source platform that unifies wearable device data from multiple providers a
 
 ## What It Does
 
-Open Wearables provides a unified API and developer portal to connect and sync data from multiple wearable devices and fitness platforms. Instead of implementing separate integrations for each provider (e.g., Garmin, Whoop, Apple Health), you can use a single platform to access normalized health data and build intelligent health insights through AI-powered automations.
+Oriya provides a unified API and developer portal to connect and sync data from multiple wearable devices and fitness platforms. Instead of implementing separate integrations for each provider (e.g., Garmin, Whoop, Apple Health), you can use a single platform to access normalized health data and build intelligent health insights through AI-powered automations.
 
 <div align="center">
 <img width="597" height="449" alt="image" src="https://github.com/user-attachments/assets/b626405d-99a3-4ff7-b044-442483a3edea" />
@@ -47,7 +47,7 @@ Building a health app that supports multiple wearables typically requires:
 - Handling various data formats and units
 - Maintaining multiple SDKs and dealing with API changes
 
-Open Wearables handles this complexity so you can focus on building your product 🚀
+Oriya handles this complexity so you can focus on building your product 🚀
 
 ## Use Cases
 
@@ -60,7 +60,7 @@ Open Wearables handles this complexity so you can focus on building your product
 
 ## Getting Started
 
-Get Open Wearables up and running in minutes.
+Get Oriya up and running in minutes.
 
 1. **Clone the repository:**
    ```bash
