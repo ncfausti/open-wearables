@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Seed activity data: create 10 users with comprehensive health data using Faker."""
+"""Seed activity data: create a thriving ecosystem of highly engaged users with comprehensive health data using Faker."""
 
 import logging
 from datetime import datetime, timedelta, timezone
@@ -147,8 +147,8 @@ def generate_workout(
     provider = fake_instance.random.choice(list(provider_sync_times.keys()))
     last_synced_at = provider_sync_times[provider]
 
-    # Generate start datetime within last 6 months, but not after last sync
-    start_datetime = fake_instance.date_time_between(start_date="-6M", end_date=last_synced_at, tzinfo=timezone.utc)
+    # Generate start datetime within last 12 months, but not after last sync
+    start_datetime = fake_instance.date_time_between(start_date="-12M", end_date=last_synced_at, tzinfo=timezone.utc)
 
     # Duration between 15 minutes and 3 hours
     duration_minutes = fake_instance.random_int(min=15, max=180)
@@ -211,8 +211,8 @@ def generate_sleep(
     provider = fake_instance.random.choice(list(provider_sync_times.keys()))
     last_synced_at = provider_sync_times[provider]
 
-    # Generate sleep start datetime within last 6 months, but not after last sync (typically evening/night)
-    base_datetime = fake_instance.date_time_between(start_date="-6M", end_date=last_synced_at, tzinfo=timezone.utc)
+    # Generate sleep start datetime within last 12 months, but not after last sync (typically evening/night)
+    base_datetime = fake_instance.date_time_between(start_date="-12M", end_date=last_synced_at, tzinfo=timezone.utc)
     # Sleep typically starts between 9 PM and 1 AM
     start_hour = fake_instance.random_int(min=21, max=25) % 24
     start_datetime = base_datetime.replace(hour=start_hour, minute=fake_instance.random_int(min=0, max=59))
@@ -404,7 +404,8 @@ def generate_user_connections(
 
 
 def seed_activity_data() -> None:
-    """Create 10 users with comprehensive health data."""
+    """Create a thriving ecosystem of highly engaged users with comprehensive health data."""
+    total_users = 75
     with SessionLocal() as db:
         users_created = 0
         workouts_created = 0
@@ -417,7 +418,7 @@ def seed_activity_data() -> None:
         event_detail_repo = EventRecordDetailRepository(EventRecordDetail)
         connection_repo = CrudRepository(UserConnection)
 
-        for user_num in range(1, 3):
+        for user_num in range(1, total_users + 1):
             # Create user
             user_data = UserCreate(
                 first_name=fake.first_name(),
@@ -428,15 +429,18 @@ def seed_activity_data() -> None:
 
             user = user_service.create(db, user_data)
             users_created += 1
-            print(f"✓ Created user {user_num}/2: {user.email} (ID: {user.id})")
+            print(f"✓ Created user {user_num}/{total_users}: {user.email} (ID: {user.id})")
 
             # Create personal record (one per user)
             personal_record_data = generate_personal_record(user.id, fake)
             personal_record_repo.create(db, personal_record_data)
             print(f"  ✓ Created personal record for user {user_num}")
 
-            # Create provider connections (2 per user)
-            user_connections, provider_sync_times = generate_user_connections(user.id, fake, num_connections=2)
+            # Create provider connections (2-4 per user for a multi-device ecosystem)
+            num_connections = fake.random_int(min=2, max=min(4, len(SEED_PROVIDERS)))
+            user_connections, provider_sync_times = generate_user_connections(
+                user.id, fake, num_connections=num_connections
+            )
             for connection_data in user_connections:
                 created_connection = connection_repo.create(db, connection_data)
                 if created_connection:
@@ -448,15 +452,31 @@ def seed_activity_data() -> None:
             provider_names = ", ".join(c.provider for c in user_connections)
             print(f"  ✓ Created {len(user_connections)} provider connections: {provider_names}")
 
-            # Create 80 workouts for this user
-            for workout_num in range(1, 81):
+            # Vary per-user engagement: highly engaged users have 80-220 workouts,
+            # casual users have 30-80. Weighted toward highly engaged.
+            engagement_level = fake.random_element(elements=("high", "high", "high", "medium", "casual"))
+            if engagement_level == "high":
+                num_workouts = fake.random_int(min=120, max=220)
+                num_sleeps = fake.random_int(min=90, max=180)
+                time_series_chance = 70
+            elif engagement_level == "medium":
+                num_workouts = fake.random_int(min=60, max=120)
+                num_sleeps = fake.random_int(min=50, max=100)
+                time_series_chance = 55
+            else:
+                num_workouts = fake.random_int(min=30, max=80)
+                num_sleeps = fake.random_int(min=20, max=60)
+                time_series_chance = 40
+
+            # Create workouts for this user
+            for workout_num in range(1, num_workouts + 1):
                 record, detail = generate_workout(user.id, fake, provider_sync_times)
                 event_record_service.create(db, record)
                 event_record_service.create_detail(db, detail)  # Defaults to "workout"
                 workouts_created += 1
 
-                # Generate time series samples for some workouts (30% chance)
-                if fake.boolean(chance_of_getting_true=30):
+                # Generate time series samples for some workouts (engagement-dependent)
+                if fake.boolean(chance_of_getting_true=time_series_chance):
                     samples = generate_time_series_samples(
                         record.start_datetime,
                         record.end_datetime,
@@ -471,21 +491,24 @@ def seed_activity_data() -> None:
                         timeseries_service.bulk_create_samples(db, samples)
                         time_series_samples_created += len(samples)
 
-                if workout_num % 20 == 0:
-                    print(f"  Created {workout_num}/80 workouts for user {user_num}")
+                if workout_num % 40 == 0:
+                    print(f"  Created {workout_num}/{num_workouts} workouts for user {user_num}")
 
-            # Create 20 sleep records for this user
-            for sleep_num in range(1, 21):
+            # Create sleep records for this user
+            for sleep_num in range(1, num_sleeps + 1):
                 record, detail = generate_sleep(user.id, fake, provider_sync_times)
                 event_record_service.create(db, record)
                 event_detail_repo.create(db, detail, detail_type="sleep")
                 sleeps_created += 1
 
-                if sleep_num % 10 == 0:
-                    print(f"  Created {sleep_num}/20 sleep records for user {user_num}")
+                if sleep_num % 30 == 0:
+                    print(f"  Created {sleep_num}/{num_sleeps} sleep records for user {user_num}")
 
             db.commit()
-            print(f"  ✓ Completed all health data for user {user_num}\n")
+            print(
+                f"  ✓ Completed {engagement_level} engagement user {user_num}: "
+                f"{num_workouts} workouts, {num_sleeps} sleeps\n"
+            )
 
         print("✓ Successfully created:")
         print(f"  - {users_created} users")
