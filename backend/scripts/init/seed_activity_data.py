@@ -423,7 +423,7 @@ def seed_activity_data() -> None:
             user_data = UserCreate(
                 first_name=fake.first_name(),
                 last_name=fake.last_name(),
-                email=fake.unique.email(),
+                email=fake.unique.email(domain="gmail.com"),
                 external_user_id=fake.unique.uuid4() if fake.boolean(chance_of_getting_true=80) else None,
             )
 
