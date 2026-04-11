@@ -1,4 +1,4 @@
-"""Open Wearables Python SDK - A typed, async-ready client for the Open Wearables API."""
+"""Oriya Python SDK - A typed, async-ready client for the Oriya API."""
 
 from open_wearables.client import OpenWearables
 from open_wearables.models import (

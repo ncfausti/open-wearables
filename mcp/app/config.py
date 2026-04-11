@@ -1,4 +1,4 @@
-"""Configuration settings for Open Wearables MCP server."""
+"""Configuration settings for Oriya MCP server."""
 
 import sys
 from pathlib import Path
@@ -19,11 +19,11 @@ class Settings(BaseSettings):
     # Required settings
     open_wearables_api_url: str = Field(
         default="http://localhost:8000",
-        description="Base URL for Open Wearables backend API",
+        description="Base URL for Oriya backend API",
     )
     open_wearables_api_key: SecretStr = Field(
         default=SecretStr(""),
-        description="API key for authenticating with Open Wearables backend",
+        description="API key for authenticating with Oriya backend",
     )
 
     # Optional settings

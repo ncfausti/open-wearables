@@ -26,7 +26,7 @@ class Settings(BaseSettings):
     environment: EnvironmentType = EnvironmentType.LOCAL
 
     # API SETTINGS
-    api_name: str = "Open Wearables API"
+    api_name: str = "Oriya API"
     api_v1: str = "/api/v1"
     api_latest: str = api_v1
     paging_limit: int = 100
@@ -133,7 +133,7 @@ class Settings(BaseSettings):
     # EMAIL SETTINGS (Resend)
     resend_api_key: SecretStr | None = None
     email_from_address: str | None = None
-    email_from_name: str = "Open Wearables"
+    email_from_name: str = "Oriya"
     frontend_url: str = "http://localhost:3000"
     invitation_expire_days: int = 7
     email_max_retries: int = 5

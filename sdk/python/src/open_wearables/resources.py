@@ -1,4 +1,4 @@
-"""Resource classes for the Open Wearables API."""
+"""Resource classes for the Oriya API."""
 
 from __future__ import annotations
 

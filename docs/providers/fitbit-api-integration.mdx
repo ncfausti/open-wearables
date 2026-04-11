@@ -4,7 +4,7 @@ description: "Setup guide for Fitbit integration"
 ---
 
 <Note>
-**Need help with your Fitbit integration?** Pop into our [Discord](https://discord.gg/qrcfFnNE6H) if you have questions or want to discover how Open Wearables can solve your problems.
+**Need help with your Fitbit integration?** Pop into our [Discord](https://discord.gg/qrcfFnNE6H) if you have questions or want to discover how Oriya can solve your problems.
 </Note>
 
 ## Overview
@@ -21,14 +21,14 @@ Fitbit provides access to workout/activity data from Fitbit devices through the 
 | Daily activity summary | Available via API - not yet implemented |
 
 <Info>
-Open Wearables currently syncs **workout/activity data** from Fitbit using the Activities List API. Heart rate, sleep, and daily activity summary support is planned for a future release.
+Oriya currently syncs **workout/activity data** from Fitbit using the Activities List API. Heart rate, sleep, and daily activity summary support is planned for a future release.
 </Info>
 
 ### Data delivery
 
 | Method | Description |
 |--------|-------------|
-| **Polling (pull)** | Open Wearables periodically fetches activity data via the Fitbit Web API (via Celery Beat) |
+| **Polling (pull)** | Oriya periodically fetches activity data via the Fitbit Web API (via Celery Beat) |
 
 <Note>
 Fitbit Subscription (webhook) support is out of scope for the current integration and remains tracked in [GitHub issue #226](https://github.com/the-momentum/open-wearables/issues/226). All sync is currently polling-based.
@@ -57,7 +57,7 @@ Fitbit Subscription (webhook) support is out of scope for the current integratio
 
     Fill in the registration form:
 
-    - **Application Name**: Your app name (e.g. "Open Wearables")
+    - **Application Name**: Your app name (e.g. "Oriya")
     - **Description**: Brief description of your application
     - **Application Website URL**: Your app's website (can be `http://localhost:3000` for local dev)
     - **Organization**: Your organization name
@@ -75,7 +75,7 @@ Fitbit Subscription (webhook) support is out of scope for the current integratio
     </Warning>
   </Step>
 
-  <Step title="Configure credentials in Open Wearables">
+  <Step title="Configure credentials in Oriya">
     Add the following to your `.env` file:
 
 ```bash
@@ -102,7 +102,7 @@ FITBIT_DEFAULT_SCOPE="activity heartrate sleep profile"
   </Step>
 
   <Step title="Connect a user via OAuth">
-    With credentials configured and your Open Wearables instance running, initiate the OAuth flow to connect a user's Fitbit account.
+    With credentials configured and your Oriya instance running, initiate the OAuth flow to connect a user's Fitbit account.
 
     **1. Get the authorization URL:**
 
@@ -121,7 +121,7 @@ FITBIT_DEFAULT_SCOPE="activity heartrate sleep profile"
 
     **2. Redirect the user** to the `authorization_url`. They will log in to Fitbit and authorize your app.
 
-    **3. Fitbit redirects back** to the callback URI configured in your `.env` (`FITBIT_REDIRECT_URI`). Open Wearables automatically exchanges the authorization code for access tokens.
+    **3. Fitbit redirects back** to the callback URI configured in your `.env` (`FITBIT_REDIRECT_URI`). Oriya automatically exchanges the authorization code for access tokens.
 
     **4. Verify the connection** was created:
 
@@ -147,12 +147,12 @@ FITBIT_DEFAULT_SCOPE="activity heartrate sleep profile"
     ```
 
     <Note>
-    By default, Open Wearables syncs activities from the last 30 days. You can specify a custom date range using the `start_date` and `end_date` query parameters.
+    By default, Oriya syncs activities from the last 30 days. You can specify a custom date range using the `start_date` and `end_date` query parameters.
     </Note>
   </Step>
 
   <Step title="Verify the integration">
-    Once data has synced, fetch it via the Open Wearables API:
+    Once data has synced, fetch it via the Oriya API:
 
     ```bash
     # Fetch workouts
@@ -178,7 +178,7 @@ When the rate limit is exceeded, the API returns HTTP `429 Too Many Requests`. T
 
 <CardGroup cols={2}>
   <Card title="API Reference" icon="terminal" href="/api-reference/introduction">
-    Explore the Open Wearables API endpoints.
+    Explore the Oriya API endpoints.
   </Card>
   <Card title="Architecture" icon="diagram" href="/architecture/system-overview">
     Understand the overall system architecture.

@@ -1,5 +1,5 @@
 """
-Main pytest configuration for Open Wearables backend tests.
+Main pytest configuration for Oriya backend tests.
 
 Following patterns from know-how-tests.md:
 - PostgreSQL test database with transaction rollback (via testcontainers or external DB)

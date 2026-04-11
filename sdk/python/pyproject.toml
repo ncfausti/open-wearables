@@ -5,12 +5,12 @@ build-backend = "hatchling.build"
 [project]
 name = "open-wearables"
 version = "0.1.0"
-description = "Python SDK for the Open Wearables API - Access fitness and health data from wearable devices"
+description = "Python SDK for the Oriya API - Access fitness and health data from wearable devices"
 readme = "README.md"
 license = "MIT"
 requires-python = ">=3.10"
 authors = [
-    { name = "Open Wearables Contributors" }
+    { name = "Oriya Contributors" }
 ]
 keywords = [
     "wearables",

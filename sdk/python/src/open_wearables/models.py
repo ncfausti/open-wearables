@@ -1,4 +1,4 @@
-"""Data models for the Open Wearables SDK."""
+"""Data models for the Oriya SDK."""
 
 from __future__ import annotations
 
@@ -10,7 +10,7 @@ from pydantic import BaseModel, ConfigDict, EmailStr, Field
 
 
 class User(BaseModel):
-    """Represents a user in the Open Wearables system."""
+    """Represents a user in the Oriya system."""
 
     model_config = ConfigDict(from_attributes=True)
 

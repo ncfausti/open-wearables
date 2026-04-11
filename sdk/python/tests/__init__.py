@@ -1,1 +1,1 @@
-"""Tests for the Open Wearables SDK."""
+"""Tests for the Oriya SDK."""

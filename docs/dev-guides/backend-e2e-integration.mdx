@@ -1,16 +1,16 @@
 ---
 title: "Backend E2E Integration Guide"
-description: "Complete walkthrough for integrating Open Wearables with your backend application"
+description: "Complete walkthrough for integrating Oriya with your backend application"
 ---
 
-This guide walks you through the complete integration flow for connecting your backend application to Open Wearables. You'll learn how to create users, connect wearable providers via OAuth, sync data, and retrieve health metrics.
+This guide walks you through the complete integration flow for connecting your backend application to Oriya. You'll learn how to create users, connect wearable providers via OAuth, sync data, and retrieve health metrics.
 
 ## Prerequisites
 
 Before you begin, ensure you have:
 
-- Open Wearables instance running (self-hosted or cloud)
-- API Key generated from the settings tab in Open Wearables Developer portal
+- Oriya instance running (self-hosted or cloud)
+- API Key generated from the settings tab in Oriya Developer portal
 - Your backend framework ready (examples use Python/FastAPI, but concepts apply to any language)
 
 ### Environment Variables
@@ -46,14 +46,14 @@ If you're building a mobile app that pushes health data (e.g., Apple Health from
     | Authentication | Use Case |
     |----------------|----------|
     | **API Key** | Backend-to-backend integration, fetching data, OAuth flows |
-    | **SDK Token** | Mobile apps pushing health data to Open Wearables |
+    | **SDK Token** | Mobile apps pushing health data to Oriya |
   </Tab>
   <Tab title="How It Works">
     ```mermaid
     sequenceDiagram
         participant App as Mobile App
         participant Backend as Your Backend
-        participant OW as Open Wearables
+        participant OW as Oriya
 
         App->>Backend: User logs in
         Backend->>OW: Exchange app credentials for token
@@ -157,7 +157,7 @@ SDK tokens are **only valid for `/sdk/` endpoints**. All other API endpoints wil
 ```mermaid
 sequenceDiagram
     participant App as Your App
-    participant OW as Open Wearables
+    participant OW as Oriya
     participant Provider as Wearable Provider
 
     App->>OW: 1. Create user
@@ -176,7 +176,7 @@ sequenceDiagram
 
 ## Step 1: User Registration
 
-When a user registers in your application, create a corresponding user in Open Wearables.
+When a user registers in your application, create a corresponding user in Oriya.
 
 ### Create User
 
@@ -241,12 +241,12 @@ async function createUser(email: string, externalId: string): Promise<User> {
 ```
 
 <Warning>
-**Store the Open Wearables User ID!** You'll need this ID for all subsequent API calls.
+**Store the Oriya User ID!** You'll need this ID for all subsequent API calls.
 </Warning>
 
 ### Update Your User Model
 
-Add a field to store the Open Wearables user ID:
+Add a field to store the Oriya user ID:
 
 <CodeGroup>
 
@@ -272,7 +272,7 @@ model User {
 
 ### Handling Duplicate Users
 
-Open Wearables allows multiple users with the same email. To prevent duplicates in concurrent requests (common in SPAs), implement a check-then-create pattern:
+Oriya allows multiple users with the same email. To prevent duplicates in concurrent requests (common in SPAs), implement a check-then-create pattern:
 
 ```python
 async def get_or_create_user(email: str, external_id: str) -> dict:
@@ -354,15 +354,15 @@ async def get_auth_url(provider: str, user_id: str) -> str:
     Your frontend initiates the connection flow.
   </Step>
   <Step title="Your backend calls the authorize endpoint">
-    Request the authorization URL from Open Wearables.
+    Request the authorization URL from Oriya.
   </Step>
   <Step title="Redirect user to authorization_url">
     The user authenticates with their wearable provider.
   </Step>
-  <Step title="Provider redirects to Open Wearables callback">
-    Open Wearables handles the OAuth callback automatically.
+  <Step title="Provider redirects to Oriya callback">
+    Oriya handles the OAuth callback automatically.
   </Step>
-  <Step title="Open Wearables redirects to your app">
+  <Step title="Oriya redirects to your app">
     Configure a `redirect_uri` parameter to return users to your app.
   </Step>
 </Steps>
@@ -609,7 +609,7 @@ curl "http://localhost:8000/api/v1/users/USER_ID/timeseries?start_time=2025-01-1
 
 ## Complete Integration Example
 
-Here's a complete Python client class for Open Wearables integration:
+Here's a complete Python client class for Oriya integration:
 
 ```python
 import httpx
@@ -793,8 +793,8 @@ async def main():
 ## Troubleshooting
 
 <AccordionGroup>
-  <Accordion title="Docker container can't reach Open Wearables on localhost">
-    If your app runs in Docker and Open Wearables runs on the host machine:
+  <Accordion title="Docker container can't reach Oriya on localhost">
+    If your app runs in Docker and Oriya runs on the host machine:
     
     ```yaml docker-compose.yml
     services:
@@ -819,7 +819,7 @@ async def main():
   </Accordion>
   
   <Accordion title="Multiple users created for the same email">
-    Open Wearables allows duplicate emails by design. Use `external_user_id` to identify users uniquely:
+    Oriya allows duplicate emails by design. Use `external_user_id` to identify users uniquely:
     
     ```python
     # Always check by external_user_id before creating

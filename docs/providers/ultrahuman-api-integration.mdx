@@ -4,7 +4,7 @@ description: "Setup guide for Ultrahuman Ring Air integration"
 ---
 
 <Note>
-**Need help with your Ultrahuman integration?** Pop into our [Discord](https://discord.gg/qrcfFnNE6H) if you have questions or want to discover how Open Wearables can solve your problems.
+**Need help with your Ultrahuman integration?** Pop into our [Discord](https://discord.gg/qrcfFnNE6H) if you have questions or want to discover how Oriya can solve your problems.
 </Note>
 
 ## Overview
@@ -28,7 +28,7 @@ Ultrahuman provides access to sleep, recovery, and continuous activity data thro
 
 | Method | Description |
 |--------|-------------|
-| **Polling (pull)** | Open Wearables periodically fetches daily metrics via the Ultrahuman Partnership API (default: every hour via Celery Beat) |
+| **Polling (pull)** | Oriya periodically fetches daily metrics via the Ultrahuman Partnership API (default: every hour via Celery Beat) |
 
 ## What you need by the end
 
@@ -66,7 +66,7 @@ Ultrahuman provides access to sleep, recovery, and continuous activity data thro
     </Warning>
   </Step>
 
-  <Step title="Configure credentials in Open Wearables">
+  <Step title="Configure credentials in Oriya">
     Add the following to your `.env` file:
 
 ```bash
@@ -89,7 +89,7 @@ ULTRAHUMAN_DEFAULT_SCOPE=ring_data cgm_data profile
   </Step>
 
   <Step title="Connect a user via OAuth">
-    With credentials configured and your Open Wearables instance running, initiate the OAuth flow.
+    With credentials configured and your Oriya instance running, initiate the OAuth flow.
 
     **1. Get the authorization URL:**
 
@@ -108,7 +108,7 @@ ULTRAHUMAN_DEFAULT_SCOPE=ring_data cgm_data profile
 
     **2. Redirect the user** to the `authorization_url`. They will log in to Ultrahuman and authorize your app.
 
-    **3. Ultrahuman redirects back** to the callback URI configured in your `.env`. Open Wearables automatically exchanges the authorization code for access and refresh tokens.
+    **3. Ultrahuman redirects back** to the callback URI configured in your `.env`. Oriya automatically exchanges the authorization code for access and refresh tokens.
 
     **4. Verify the connection:**
 
@@ -139,7 +139,7 @@ ULTRAHUMAN_DEFAULT_SCOPE=ring_data cgm_data profile
   </Step>
 
   <Step title="Verify the integration">
-    Once data has synced, fetch it via the Open Wearables API:
+    Once data has synced, fetch it via the Oriya API:
 
     ```bash
     # Fetch sleep sessions
@@ -176,7 +176,7 @@ ULTRAHUMAN_DEFAULT_SCOPE=ring_data cgm_data profile
 
 <CardGroup cols={2}>
   <Card title="API Reference" icon="terminal" href="/api-reference/introduction">
-    Explore the Open Wearables API endpoints.
+    Explore the Oriya API endpoints.
   </Card>
   <Card title="Coverage Matrix" icon="table" href="/providers/coverage">
     See the full data coverage comparison.

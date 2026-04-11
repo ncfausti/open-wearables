@@ -4,7 +4,7 @@ description: "Setup guide for Garmin Connect integration"
 ---
 
 <Note>
-**Garmin API giving you a headache?** We feel your pain - that's exactly why we created Open Wearables. Pop into our [Discord](https://discord.gg/qrcfFnNE6H) if you have questions or want to discover how Open Wearables can solve your problems.
+**Garmin API giving you a headache?** We feel your pain - that's exactly why we created Oriya. Pop into our [Discord](https://discord.gg/qrcfFnNE6H) if you have questions or want to discover how Oriya can solve your problems.
 </Note>
 
 ## Overview
@@ -101,7 +101,7 @@ Once you get access to the Developer Portal, you’ll find the full docs, includ
 
     **Enable endpoints**
     - Open [API Endpoints](https://apis.garmin.com/tools/endpoints)
-    - For **every** endpoint, set the URL to your Open Wearables webhook push endpoint:
+    - For **every** endpoint, set the URL to your Oriya webhook push endpoint:
 
     ```
     https://<your-domain>/api/v1/garmin/webhooks/push
@@ -118,14 +118,14 @@ Once you get access to the Developer Portal, you’ll find the full docs, includ
 
     **Which endpoints to enable:**
 
-    Enable **all** endpoints listed on the page. Open Wearables accepts data from all Garmin data types (activities, dailies, sleeps, epochs, HRV, body compositions, stress, respiration, pulse ox, and more).
+    Enable **all** endpoints listed on the page. Oriya accepts data from all Garmin data types (activities, dailies, sleeps, epochs, HRV, body compositions, stress, respiration, pulse ox, and more).
 
     A subset of these types is actively requested during historical backfill — which ones is determined by `BACKFILL_DATA_TYPES` in `backend/app/services/providers/garmin/backfill_config.py`. All other enabled endpoints will passively receive data whenever Garmin pushes new updates.
 
     <Warning>
     **Backfill requirement**: backfill only works once the relevant endpoints are enabled on this page.
 
-    Once backfill is enabled and data is ready, Garmin will deliver notifications via push and Open Wearables can ingest the backfilled data.
+    Once backfill is enabled and data is ready, Garmin will deliver notifications via push and Oriya can ingest the backfilled data.
     </Warning>
 
     <Note>
@@ -143,12 +143,12 @@ Once you get access to the Developer Portal, you’ll find the full docs, includ
     - Pick which **OAuth scopes** will be shown/required during user authorization
 
     <Note>
-    Keep scopes minimal: only request what Open Wearables actually needs for your use case. If you add new data domains later, you’ll typically need to update this configuration and re-verify.
+    Keep scopes minimal: only request what Oriya actually needs for your use case. If you add new data domains later, you’ll typically need to update this configuration and re-verify.
     </Note>
   </Step>
 
-  <Step title="Provide Garmin credentials to Open Wearables">
-    Once you have an app created, configure your Open Wearables backend with:
+  <Step title="Provide Garmin credentials to Oriya">
+    Once you have an app created, configure your Oriya backend with:
 
 ```bash
 # Garmin OAuth Credentials
@@ -185,7 +185,7 @@ In the developer portal you can add team members who need access to specificatio
 
 <CardGroup cols={2}>
   <Card title="API Reference" icon="terminal" href="/api-reference/introduction">
-    Explore the Open Wearables API endpoints.
+    Explore the Oriya API endpoints.
   </Card>
   <Card title="Architecture" icon="diagram" href="/architecture/system-overview">
     Understand the overall system architecture.

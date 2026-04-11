@@ -1,4 +1,4 @@
-"""Exceptions for the Open Wearables SDK."""
+"""Exceptions for the Oriya SDK."""
 
 from __future__ import annotations
 
@@ -6,7 +6,7 @@ from typing import Any
 
 
 class OpenWearablesError(Exception):
-    """Base exception for Open Wearables SDK."""
+    """Base exception for Oriya SDK."""
 
     def __init__(self, message: str, status_code: int | None = None, response: Any | None = None):
         super().__init__(message)

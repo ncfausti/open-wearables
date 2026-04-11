@@ -1,4 +1,4 @@
-"""HTTP client for Open Wearables backend API."""
+"""HTTP client for Oriya backend API."""
 
 import logging
 from typing import Any
@@ -11,7 +11,7 @@ logger = logging.getLogger(__name__)
 
 
 class OpenWearablesClient:
-    """Client for interacting with Open Wearables REST API."""
+    """Client for interacting with Oriya REST API."""
 
     def __init__(self) -> None:
         self.base_url = settings.open_wearables_api_url.rstrip("/")

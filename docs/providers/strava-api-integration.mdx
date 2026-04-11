@@ -4,14 +4,14 @@ description: "Setup guide for Strava integration"
 ---
 
 <Warning>
-**Before you start:** The Strava integration is intended solely for the Open Wearables single-user usage scenario (i.e., personal use, not as an aggregator of multiple users’ data). Keep in mind:
+**Before you start:** The Strava integration is intended solely for the Oriya single-user usage scenario (i.e., personal use, not as an aggregator of multiple users’ data). Keep in mind:
 - **No analytics** are calculated from Strava data — it is only aggregated and displayed as-is.
 - **Only one athlete** (single user) can be connected to the integration at a time.
 - This integration should be used as a **data tracker**, not as a data source for business analytics or reporting.
 </Warning>
 
 <Note>
-**Need help with your Strava integration?** Pop into our [Discord](https://discord.gg/qrcfFnNE6H) if you have questions or want to discover how Open Wearables can solve your problems.
+**Need help with your Strava integration?** Pop into our [Discord](https://discord.gg/qrcfFnNE6H) if you have questions or want to discover how Oriya can solve your problems.
 </Note>
 
 ## Overview
@@ -74,7 +74,7 @@ Strava is an activity-focused platform — it does not provide continuous health
     </Warning>
   </Step>
 
-  <Step title="Configure credentials in Open Wearables">
+  <Step title="Configure credentials in Oriya">
     Add the following to your `.env` file:
 
 ```bash
@@ -111,7 +111,7 @@ curl -X POST https://www.strava.com/api/v3/push_subscriptions \
   -F verify_token=YOUR_WEBHOOK_VERIFY_TOKEN
 ```
 
-    When Strava receives this request, it will send a GET request to your `callback_url` with a `hub.verify_token` parameter. Open Wearables will validate the token against your `STRAVA_WEBHOOK_VERIFY_TOKEN` and echo back the challenge to confirm the subscription.
+    When Strava receives this request, it will send a GET request to your `callback_url` with a `hub.verify_token` parameter. Oriya will validate the token against your `STRAVA_WEBHOOK_VERIFY_TOKEN` and echo back the challenge to confirm the subscription.
 
     <Warning>
     The `callback_url` must be publicly accessible over HTTPS. For local development, use a tunneling tool like [ngrok](https://ngrok.com/) to expose your local server.
@@ -137,10 +137,10 @@ curl -X DELETE "https://www.strava.com/api/v3/push_subscriptions/SUBSCRIPTION_ID
   <Step title="Verify the integration">
     Once everything is configured:
 
-    1. Start your Open Wearables instance
+    1. Start your Oriya instance
     2. Connect a Strava account through the OAuth flow
     3. Create or record an activity on Strava
-    4. The webhook should deliver the event and Open Wearables will fetch and store the full activity data
+    4. The webhook should deliver the event and Oriya will fetch and store the full activity data
 
     You can check the webhook health endpoint at:
     ```
@@ -163,7 +163,7 @@ The default scope `activity:read_all,profile:read_all` is recommended for full a
 
 <CardGroup cols={2}>
   <Card title="API Reference" icon="terminal" href="/api-reference/introduction">
-    Explore the Open Wearables API endpoints.
+    Explore the Oriya API endpoints.
   </Card>
   <Card title="Architecture" icon="diagram" href="/architecture/system-overview">
     Understand the overall system architecture.

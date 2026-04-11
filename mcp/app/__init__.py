@@ -1,1 +1,1 @@
-# Open Wearables MCP Server
+# Oriya MCP Server

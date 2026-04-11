@@ -1,4 +1,4 @@
-"""Main client for the Open Wearables API."""
+"""Main client for the Oriya API."""
 
 from __future__ import annotations
 
@@ -7,9 +7,9 @@ from open_wearables.resources import UsersResource
 
 
 class OpenWearables:
-    """Open Wearables API client.
+    """Oriya API client.
 
-    A typed, async-ready Python SDK for the Open Wearables API.
+    A typed, async-ready Python SDK for the Oriya API.
 
     Example:
         ```python
@@ -39,7 +39,7 @@ class OpenWearables:
         ```
 
     Args:
-        api_key: Your Open Wearables API key.
+        api_key: Your Oriya API key.
         base_url: Optional base URL for the API (defaults to https://api.openwearables.io).
         timeout: Optional request timeout in seconds (defaults to 30.0).
     """

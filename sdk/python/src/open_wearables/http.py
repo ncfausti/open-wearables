@@ -1,4 +1,4 @@
-"""HTTP client for the Open Wearables API."""
+"""HTTP client for the Oriya API."""
 
 from __future__ import annotations
 
@@ -17,7 +17,7 @@ from open_wearables.exceptions import (
 
 
 class HttpClient:
-    """Low-level HTTP client for making requests to the Open Wearables API."""
+    """Low-level HTTP client for making requests to the Oriya API."""
 
     DEFAULT_BASE_URL = "https://api.openwearables.io"
     DEFAULT_TIMEOUT = 30.0

@@ -1,4 +1,4 @@
-"""Open Wearables MCP Server - Main entry point."""
+"""Oriya MCP Server - Main entry point."""
 
 import logging
 from datetime import date
@@ -119,7 +119,7 @@ mcp.mount(workouts_router)
 # Mount prompts
 mcp.mount(prompts_router)
 
-logger.info(f"Open Wearables MCP server initialized. API URL: {settings.open_wearables_api_url}")
+logger.info(f"Oriya MCP server initialized. API URL: {settings.open_wearables_api_url}")
 
 
 def main() -> None:

@@ -1,9 +1,9 @@
-# Open Wearables Python SDK
+# Oriya Python SDK
 
 > [!CAUTION]
 > This is SDK is unstable beta right now.
 
-A typed, async-ready Python SDK for the [Open Wearables API](https://github.com/TudorGR/open-wearables).
+A typed, async-ready Python SDK for the [Oriya API](https://github.com/TudorGR/open-wearables).
 
 ## Installation
 

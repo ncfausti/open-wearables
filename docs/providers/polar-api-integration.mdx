@@ -4,7 +4,7 @@ description: "Setup guide for Polar integration"
 ---
 
 <Note>
-**Need help with your Polar integration?** Pop into our [Discord](https://discord.gg/qrcfFnNE6H) if you have questions or want to discover how Open Wearables can solve your problems.
+**Need help with your Polar integration?** Pop into our [Discord](https://discord.gg/qrcfFnNE6H) if you have questions or want to discover how Oriya can solve your problems.
 </Note>
 
 ## Overview
@@ -22,17 +22,17 @@ Polar provides access to exercise, daily activity, sleep, and heart rate data fr
 | Nightly Recharge / Recovery | Available via API - not yet implemented |
 
 <Info>
-Open Wearables currently syncs **exercise/workout data** from Polar. The AccessLink API also exposes sleep, daily activity, continuous HR, and Nightly Recharge data - support for these types is planned for a future release.
+Oriya currently syncs **exercise/workout data** from Polar. The AccessLink API also exposes sleep, daily activity, continuous HR, and Nightly Recharge data - support for these types is planned for a future release.
 </Info>
 
 ### Data delivery
 
 | Method | Description |
 |--------|-------------|
-| **Polling (pull)** | Open Wearables periodically fetches exercise data via the Polar AccessLink API (via Celery Beat) |
+| **Polling (pull)** | Oriya periodically fetches exercise data via the Polar AccessLink API (via Celery Beat) |
 
 <Info>
-**Webhooks:** Polar supports webhooks for event notifications, but Open Wearables does not yet implement a Polar webhook handler. Data is synced via periodic polling only. Webhook support is planned for a future release.
+**Webhooks:** Polar supports webhooks for event notifications, but Oriya does not yet implement a Polar webhook handler. Data is synced via periodic polling only. Webhook support is planned for a future release.
 </Info>
 
 ## What you need by the end
@@ -64,7 +64,7 @@ Open Wearables currently syncs **exercise/workout data** from Polar. The AccessL
     - Accept the AccessLink Limited License Agreement
 
     **2. Application Information**
-    - **Application Name**: Your app name (e.g. "Open Wearables")
+    - **Application Name**: Your app name (e.g. "Oriya")
     - **Business contact (email)**: Your contact email
     - **Description**: Brief description of your application
     - **Application Web site**: Your app's website (optional)
@@ -86,7 +86,7 @@ Open Wearables currently syncs **exercise/workout data** from Polar. The AccessL
     </Warning>
   </Step>
 
-  <Step title="Configure credentials in Open Wearables">
+  <Step title="Configure credentials in Oriya">
     Add the following to your `.env` file:
 
 ```bash
@@ -110,7 +110,7 @@ POLAR_REDIRECT_URI=http://localhost:8000/api/v1/oauth/polar/callback
   </Step>
 
   <Step title="Connect a user via OAuth">
-    With credentials configured and your Open Wearables instance running, initiate the OAuth flow to connect a user's Polar account.
+    With credentials configured and your Oriya instance running, initiate the OAuth flow to connect a user's Polar account.
 
     **1. Get the authorization URL:**
 
@@ -129,7 +129,7 @@ POLAR_REDIRECT_URI=http://localhost:8000/api/v1/oauth/polar/callback
 
     **2. Redirect the user** to the `authorization_url`. They will log in to Polar Flow and authorize your app.
 
-    **3. Polar redirects back** to the callback URI configured in your `.env` (`POLAR_REDIRECT_URI`). Open Wearables automatically exchanges the authorization code for access tokens and registers the user with the Polar API.
+    **3. Polar redirects back** to the callback URI configured in your `.env` (`POLAR_REDIRECT_URI`). Oriya automatically exchanges the authorization code for access tokens and registers the user with the Polar API.
 
     **4. Verify the connection** was created:
 
@@ -160,7 +160,7 @@ POLAR_REDIRECT_URI=http://localhost:8000/api/v1/oauth/polar/callback
   </Step>
 
   <Step title="Verify the integration">
-    Once data has synced, fetch it via the Open Wearables API:
+    Once data has synced, fetch it via the Oriya API:
 
     ```bash
     # Fetch workouts
@@ -195,7 +195,7 @@ Rate limit headers are included in every response: `RateLimit-Usage`, `RateLimit
 
 <CardGroup cols={2}>
   <Card title="API Reference" icon="terminal" href="/api-reference/introduction">
-    Explore the Open Wearables API endpoints.
+    Explore the Oriya API endpoints.
   </Card>
   <Card title="Architecture" icon="diagram" href="/architecture/system-overview">
     Understand the overall system architecture.
