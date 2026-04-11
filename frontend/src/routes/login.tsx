@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { useAuth } from '@/hooks/use-auth';
 import { isAuthenticated } from '@/lib/auth/session';
 import { ArrowRight, Mail, Lock, Loader2 } from 'lucide-react';
-import logotype from '@/logotype.svg';
 import { CodePreviewCard } from '@/components/login/code-preview-card';
 import { DEFAULT_REDIRECTS } from '@/lib/constants/routes';
 import { getCopyrightText } from '@/lib/constants/app';
@@ -41,7 +40,7 @@ function LoginPage() {
         {/* Left Section: Login Form */}
         <div className="flex flex-col justify-between p-8 sm:p-12 border-b lg:border-b-0 lg:border-r border-zinc-900 bg-black/90">
           {/* Header/Logo */}
-          <img src={logotype} alt="Oriya" className="h-30" />
+          <img src="/icon.png" alt="Oriya" className="h-16 w-auto object-contain" />
 
           {/* Main Form Container */}
           <div className="w-full max-w-sm mx-auto space-y-6 my-auto py-8">

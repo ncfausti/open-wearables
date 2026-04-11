@@ -7,7 +7,6 @@ import {
   Settings,
   ExternalLink,
 } from 'lucide-react';
-import logotype from '@/logotype.svg';
 import { cn } from '@/lib/utils';
 import { useAuth } from '@/hooks/use-auth';
 import { ROUTES } from '@/lib/constants/routes';
@@ -45,7 +44,7 @@ export function SimpleSidebar() {
     <aside className="relative w-64 bg-black flex flex-col border-r border-zinc-900">
       {/* Header */}
       <div className="p-4 border-b border-zinc-900">
-        <img src={logotype} alt="Oriya" className="h-auto" />
+        <img src="/icon.png" alt="Oriya" className="h-10 w-auto object-contain" />
       </div>
 
       {/* Navigation */}
