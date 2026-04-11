@@ -40,7 +40,16 @@ function LoginPage() {
         {/* Left Section: Login Form */}
         <div className="flex flex-col justify-between p-8 sm:p-12 border-b lg:border-b-0 lg:border-r border-zinc-900 bg-black/90">
           {/* Header/Logo */}
-          <img src="/icon.png" alt="Oriya" className="h-16 w-auto object-contain" />
+          <div className="flex items-center gap-3">
+            <img
+              src="/icon.png"
+              alt="Oriya"
+              className="h-16 w-auto object-contain"
+            />
+            <span className="text-4xl font-semibold tracking-tight text-white">
+              Oriya
+            </span>
+          </div>
 
           {/* Main Form Container */}
           <div className="w-full max-w-sm mx-auto space-y-6 my-auto py-8">
