@@ -113,6 +113,23 @@ services:
       - app
     restart: unless-stopped
 
+  caddy:
+    image: caddy:2-alpine
+    container_name: caddy__open-wearables
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - app
+      - frontend
+    restart: unless-stopped
+
 volumes:
   postgres_data:
   redis_data:
+  caddy_data:
+  caddy_config:
