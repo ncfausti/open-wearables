@@ -1,6 +1,7 @@
 from functools import lru_cache
 from pathlib import Path
 from typing import Any
+from urllib.parse import quote_plus
 
 from pydantic import AnyHttpUrl, Field, SecretStr, ValidationInfo, field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
@@ -34,6 +35,7 @@ class Settings(BaseSettings):
     cors_allow_all: bool = False
 
     # DATABASE SETTINGS
+    database_url: SecretStr | None = None  # Full DSN — takes precedence over individual DB_* settings (Railway / Heroku)
     db_host: str = "db"
     db_port: int = 5432
     db_name: str = "open-wearables"
@@ -192,9 +194,15 @@ class Settings(BaseSettings):
 
     @property
     def db_uri(self) -> str:
+        if self.database_url:
+            # Railway/Heroku provide postgres:// — psycopg3 needs postgresql+psycopg://
+            return self.database_url.get_secret_value().replace(
+                "postgres://", "postgresql+psycopg://", 1
+            )
+        password = quote_plus(self.db_password.get_secret_value())
         return (
             f"postgresql+psycopg://"
-            f"{self.db_user}:{self.db_password.get_secret_value()}"
+            f"{self.db_user}:{password}"
             f"@{self.db_host}:{self.db_port}/{self.db_name}"
         )
 
